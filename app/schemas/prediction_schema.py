@@ -1,0 +1,1 @@
+# Prediction schemas (Pydantic models)

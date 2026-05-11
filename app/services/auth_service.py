@@ -1,0 +1,1 @@
+# Authentication service - Business logic for auth

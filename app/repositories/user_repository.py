@@ -1,0 +1,1 @@
+# User repository - Data access layer for users
