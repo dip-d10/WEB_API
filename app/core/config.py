@@ -3,10 +3,7 @@ from pathlib import Path
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-from app.logger import get_logger
 
-
-logger = get_logger(__name__)
 BASE_DIR = Path(__file__).resolve().parents[2]
 ENV_FILE_PATH = BASE_DIR / ".env"
 
@@ -36,13 +33,7 @@ class Settings(BaseSettings):
 
 @lru_cache()
 def get_settings() -> Settings:
-	try:
-		loaded_settings = Settings()
-		logger.info("Application settings loaded successfully")
-		return loaded_settings
-	except Exception as exc:
-		logger.exception("Failed to load application settings: %s", exc)
-		raise
+	return Settings()
 
 
 settings = get_settings()

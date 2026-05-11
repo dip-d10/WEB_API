@@ -4,10 +4,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from motor.core import AgnosticDatabase
 
 from app.core.config import settings
-from app.logger import get_logger
 
-
-logger = get_logger(__name__)
 
 client: Optional[AsyncIOMotorClient] = None
 database: Optional[AgnosticDatabase] = None
@@ -20,9 +17,7 @@ async def connect_to_mongo() -> None:
 		client = AsyncIOMotorClient(settings.MONGO_URI)
 		database = client[settings.MONGO_DB_NAME]
 		await database.command("ping")
-		logger.info("MongoDB connected successfully")
 	except Exception as exc:
-		logger.exception("MongoDB connection error: %s", exc)
 		raise
 
 
@@ -32,7 +27,6 @@ async def close_mongo_connection() -> None:
 	if client is not None:
 		client.close()
 		client = None
-		logger.info("MongoDB disconnected successfully")
 
 
 def get_user_collection():
